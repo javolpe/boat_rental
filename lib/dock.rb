@@ -1,12 +1,14 @@
 class Dock
   attr_reader :name,
               :max_rental_time,
-              :rental_log
+              :rental_log,
+              :revenue
   
   def initialize(name, mrt)
      @name            = name
      @max_rental_time = mrt
      @rental_log = {}
+     @revenue = 0
   end
 
   def rent(boat, renter)
@@ -29,6 +31,19 @@ class Dock
     holder
   end
 
+  def log_hour
+    x = rental_log.count
+    i = 0
+    x.times do 
+      @rental_log.keys[i].add_hour
+      i+=1
+    end
+  end
+
+  def return(boat)
+    @revenue += find_total_charge(boat)
+    boat.hours_rented = 0
+  end
 
 end
 

@@ -1,10 +1,10 @@
 require './lib/renter'
 
 class Boat
+  attr_accessor :hours_rented
 
   attr_reader :type,
-              :price_per_hour,
-              :hours_rented
+              :price_per_hour
 
   def initialize(type, price)
      @type = type
